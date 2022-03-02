@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var arr = [1, 2, 3, [1, 2, 3, 4, [2, 3, 4]]];
+        function flatA(arr, num = 1) {
+            const result = [];
+            (function flat(arr, num) {
+                arr.forEach(item => {
+                    if (Array.isArray(item) && num > 0) {
+                        flat(item, num - 1)
+                    } else {
+                        result.push(item);
+                    }
+                });
+            })(arr, num)
+            return result;
+        }
+        console.log(flatA(arr, 2))
+    </script>
+</body>
+
+</html>

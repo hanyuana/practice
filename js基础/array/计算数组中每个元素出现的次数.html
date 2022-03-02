@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // var arr = ['Alice', 'Bob', 'Tiff', 'Bruce', 'Alice','Bruce','Alice'];
+        // let obj = {};
+        // arr.forEach(item=>{
+        //     obj[item] = 1;
+        // })
+        // var res = [];
+        // let i = 0;
+        // for(res[i++] in obj)
+        // console.log(res);
+
+        // var arr = ['Alice', 'Bob', 'Tiff', 'Bruce', 'Alice','Bruce','Alice'];
+        // let obj = {};
+        // arr.forEach(item=>{
+        //     console.log(obj[item]);
+        //     if(obj[item]){
+        //         obj[item]++;
+        //     }else{
+        //         obj[item]=1
+        //     }
+        // })
+        // console.log(obj);
+
+        // function getCount(arr, rank, ranktype) {
+        //     var obj = {}, k, arr1 = [];
+        //     for (var i = 0; len = arr.lenght, i < len; i++) {
+        //         k = arr[i];
+        //         if (obj[k]) {
+        //             obj[k]++;
+        //         } else {
+        //             obj[k] = 1;
+        //         }
+        //     }
+        // }
+
+        // 保存结果{el-"元素",count- 出现次数}
+        //     for(var o in obj){
+        //         arr1.push({el:o, count:obj[o]})
+        //     }       
+
+
+
+        var names = ['Alice', 'Bob', 'Tiff', 'Bruce', 'Alice'];
+        var countedNames = names.reduce(function (allNames, name) {
+            if (name in allNames) {
+                allNames[name]++;
+            }
+            else {
+                allNames[name] = 1;
+            }
+            return allNames;
+        }, {}); 
+        console.log(countedNames);
+    </script>
+</body>
+
+</html>

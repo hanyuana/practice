@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">{{count}}
+        <button @click="add">增加</button>
+        <button @click="minus">减少</button>
+        <button @click="emitHandler">事件</button>
+        <big-text-component v-for="number in count" :key="number"></big-text-component>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script>
+        // let bigTextComponent = {
+        //     template: `<div @click="eventHandler">I have big text</div>`,
+        //     created() {
+        //         this.text = Array(9999999).fill("AlexOtakuWhat").join(",");
+        //     },
+        //     methods: {
+        //         eventHandler() {
+        //             console.log(this.text);
+        //         }
+        //     }
+        // }
+
+        // let $bus = new Vue({
+
+        // })
+
+        // let bigTextComponent = {
+        //     template: `<div>I have big text</div>`,
+        //     created() {
+        //         this.text = Array(9999999).fill("AlexOtakuWhat").join(",");
+        //         $bus.$on("myEvent", this.eventHandler)
+        //     },
+        //     methods: {
+        //         eventHandler(...arg) {
+        //             console.log(...arg);
+        //             console.log(this.text);
+        //         }
+        //     },
+        //     beforeDestroy() {
+        //         $bus.$off("myEvent", this.eventHandler)
+        //     }
+        // }
+        let Bus = function (vue) {
+            this.handles = {
+
+            }
+            this.eventUidMap = {
+                "uid": {
+                    "event": []
+                }
+            }
+            // this.handles =
+            // this.eventUidMap =  
+            this.$on = (event, callback, vm) => {
+                if (!this.handles[event]) this.handles[event] = []
+                if (callback instanceof Function) this.handles[event].push(callback)
+                if (vm instanceof vue) this.setEventUidMap(vm._uid, event, callback)
+            }
+            this.setEventUidMap = (uid, event, callback) => {
+                if (!this.eventUidMap[uid]) this.eventUidMap[uid] = {};
+                if (!this.eventUidMap[event]) this.eventUidMap[event] = [];
+                this.eventUidMap[uid][event].push(callback);
+            }
+            this.$off = (event, callback) => { 
+                if(!this.handles[event]) return
+                if(!callback){
+                    delete this.handles[event]
+                }else if(callback instanceof Function){
+                    let i = this.handles[event].length;
+                    for(let i =0; i<len;i++){
+                         
+                    }
+                }
+            }
+            this.$emit = (event, ...args) => {
+                if (this.handles[event]) {
+                    let len = this.handles[event].length
+                    for (let i=0;i <len; i++){
+                        this.handles[event][i](...args)
+                    }
+                }
+            }
+            return this
+        }
+
+        let EventBus = {
+            install(vue) {
+                // console.log(arg);
+                let bus = new Bus(vue);
+                Object.defineProperties(Vue.prototype, {
+                    $eventBus: {
+                        get: function () {
+                            return bus
+                        }
+                    }
+                })
+                Vue.mixin({
+                    beforeDestroy() {
+
+                    }
+                })
+            }
+        }
+        Vue.use(EventBus)
+
+        let bigTextComponent = {
+            template: `<div>I have big text</div>`,
+            created() {
+                this.text = Array(9999999).fill("AlexOtakuWhat").join(",");
+                this.$eventBus.$("myEvent", this.eventHandler, this)
+                // $bus.$on("myEvent", this.eventHandler)
+            },
+            methods: {
+                eventHandler(...arg) {
+                    console.log(...arg);
+                    console.log(this.text);
+                }
+            }
+        }
+
+        let vm = new Vue({
+            el: "#app",
+            data: {
+                count: 0
+            },
+            computed:{
+                bus(){
+                    return this.$eventBus
+                }
+            },
+            methods: {
+                add() {
+                    this.count++;
+                },
+                minus() {
+                    if (this.count) {
+                        this.count--;
+                    }
+                },
+                emitHandler() {
+                    this.$eventBus.$emit("myEvent", "qq", "听不懂", "但是可以扣回去用    ")
+                    // $bus.$emit("myEvent", "qq", "听不懂")
+                }
+            },
+            components: {
+                bigTextComponent
+            }
+        })
+
+
+    </script>
+</body>
+
+</html>

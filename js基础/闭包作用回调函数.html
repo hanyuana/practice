@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <a href="#" id="as1">20</a>
+    <a href="#" id="as2">40</a>
+    <script>
+        function changeSize(size){
+            return function(){
+                document.body.style.fontSize = size + "px";
+            }
+        }
+        var size20 = changeSize(20);
+        var size40 = changeSize(40);
+        document.getElementById("as1").onclick = size20;
+        document.getElementById("as2").onclick = size40;
+    </script>
+</body>
+</html>

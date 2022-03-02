@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var people = [
+            {name:'Alice',age:21},
+            {name:'Max',age:20},
+            {name:"Jane",age:20}
+        ];
+        function groupBy(people,age) {
+            console.log(people);
+            return people.reduce(function(acc,obj){
+                // console.log(acc);    
+                // console.log(obj);
+                var key = obj[age];
+                console.log(key);   
+                console.log(acc[key]);
+                if (!acc[key]){
+                    acc[key] = [];
+                }
+                acc[key].push(obj);
+                return acc;
+            },{});
+        }
+        var groupePeople = groupBy(people,"age");
+        console.log(groupePeople);
+    </script>
+</body>
+</html>

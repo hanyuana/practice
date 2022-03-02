@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        if (!Array.prototype.mapUsingReduce) {
+            Array.prototype.mapUsingReduce = function (callback, thisArg) {
+                return this.reduce(function (mappedArray, currentValue, index, array) {
+                    mappedArray[index] = callback.call(thisArg, currentValue, index, array)
+                    return mappedArray
+                }, [])
+            }
+        }
+
+        [1, 2, , 3].mapUsingReduce(
+            (currentValue, index, array) => currentValue + index + array.length
+        ) // [5, 7, , 10]
+    </script>
+</body>
+
+</html>

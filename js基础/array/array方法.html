@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // const items =["item1","item2","item3"];
+        // const copy = [];
+        // for(let i =0;i<items.length;i++){
+        //     copy.push(items[i])
+        // }
+        // console.log(copy);
+        // items.forEach(item=>{
+        //     // copy.push(item)
+        //     console.log(item);
+
+        // })
+        // console.log(copy);
+
+        // 打印出数组内容
+        // function logArrayElements(element, index, array){
+        //     console.log("a[" + index + "] = " +element);
+        // }
+        // let arr = [2,5, ,9];
+        // arr.forEach(logArrayElements);
+
+        function copy1(obj) {
+            const copy = Object.create(Object.getPrototypeOf(obj));
+
+            // console.log(copy);
+            const propNames = Object.getOwnPropertyNames(obj);
+            // console.log(propNames);
+            // console.log(obj)
+            propNames.forEach(function (name) {
+                const desc = Object.getOwnPropertyDescriptor(obj, name);
+                // console.log(desc);
+                // console.log(copy);
+                // console.log(name);  
+                console.log(obj);
+                console.log(desc);
+                Object.defineProperty(copy, name, desc);
+            })
+            return copy
+        }
+        const obj1 = { a: 1, b: 2, c: 3 }
+        console.log(Object.getPrototypeOf(obj1))
+        const obj2 = copy1(obj1);
+        // console.log(obj1);
+        // console.log(obj2);
+
+
+
+        //  Array.map 
+        // const arr = [1,2,3,4,5];
+        // const arr1 = arr.map(item=>item*2);
+        // console.log(arr1);
+
+        // Array.some
+        // const arr = [1,2,3,5,7];
+        //  const even = arr.some(item => item%2 ===0)
+        // const even =(el)=> el % 2 === 0
+        // console.log(arr.some(even));
+
+        // Array.filter
+        // const words = ['spray', 'limit', 'elite', 'exuberant', 'destruction', 'present']
+        // const result = words.filter(item=>item.length<6)
+        // console.log(result);
+
+
+        // Array.every
+        // const arr = [];
+        // const arr1 = arr.every(item=>item<40)
+        // console.log(arr1);
+
+
+
+        const array1 = [1, 30, 39, 29, 10, 13];
+        array1.map(item => {
+            if (typeof item === "number") {
+                console.log("item", +item)
+            }
+        });
+
+    </script>
+</body>
+
+</html>

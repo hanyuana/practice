@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // var maxCallback= (acc,cur )=> Math.max(acc.x,cur.x);
+        // var maxCallback2 = (acc,cur)=> Math.max(max,cur);
+        // [ { x: 2 }, { x: 22 }, { x: 42 } ].reduce(maxCallback);
+        // [ { x: 2 }, { x: 22 }].reduce(maxCallback);
+        // [ { x: 2 }                       ].reduce( maxCallback );
+
+
+        // 累加数组里面的值
+        // var init = 0;
+        // var arr = [{x:1},{x : 2},{ x : 3},{ x: 4 },{ x:5 }];
+        // var sum = arr.reduce((prev,cur)=>{
+        //     return prev +cur.x;
+        // },0)
+        // console.log(sum)
+
+
+        // 将二位数组转化为一维
+
+        // var arr = [[0,1],[2,3],[4,5]].reduce(
+        //     function(a,b){
+        //        return a.concat(b)
+        //     },[]
+        // );
+        // console.log(arr);
+
+        // 箭头函数的版本
+
+        // var arr = [[0,1],[2,3],[4,5]].reduce(
+        //     (a,b)=> a.concat(b),[]
+        // )
+        // console.log(arr);
+
+        // 计算数组中 元素出现的次数
+        // var names = ['Alice', 'Bob', 'Tiff', 'Bruce', 'Alice','Bruce','Alice'];
+        // var contedNames = names.reduce(function(allNames,name){
+        //     console.log(allNames);
+        //     if(name in allNames){
+        //         // console.log(name);
+        //         console.log(allNames);
+        //         console.log(allNames[name]);
+        //         allNames[name]++;
+        //         console.log(name);
+        //         console.log(allNames[name]);
+        //     }else{
+        //         // console.log(name);
+        //         allNames[name] = 1;
+        //     }
+        //     return allNames
+        // },{ })
+        // console.log(contedNames);
+
+        // var names = ['Alice', 'Bob', 'Tiff', 'Bruce', 'Alice','Bruce','Alice'];
+        // var obj = {};
+        // names.forEach(item=>{
+        // console.log(obj[item]);
+        // console.log(item);
+        // if(obj[item]){
+        //     obj[item]++;
+        // }else{
+        // console.log(item);
+        // obj[item]=1;
+        // }
+        // console.log(obj[item]);
+        // })
+
+        // console.log(obj);
+
+        // let obj1 = {};
+        // obj1.a = 1;
+        // obj1.b;
+        // console.log(obj1.a == true);
+        // console.log(obj1.b == false);
+    </script>
+</body>
+
+</html>

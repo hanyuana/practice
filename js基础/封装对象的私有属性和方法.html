@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // const c = createCache()
+        // console.log(c.num)//num此时就作为c私有属性
+        // c.set('a', 100) //set此时作为c的私有方法
+        // console.log(c.get('a'))
+        function createCache() {
+            const num = 100;
+            const data = {};
+            return {
+                num: num,
+                set: function (key, val) {
+                    data[key] = val;
+                },
+                get: function (key) {
+                    return data[key];
+                }
+            }
+        }
+        const c = createCache()
+        console.log(c.num)//num此时就作为c私有属性
+        c.set('a', 100) //set此时作为c的私有方法
+        console.log(c.get('a'))
+        console.log(c);
+    </script>
+</body>
+
+</html>

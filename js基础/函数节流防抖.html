@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 函数防抖 原理 是指在函数被高频出发时 当停止触发后 延时n 秒 再执行函数,
+        // (既每次触发都清理延时函数再次开始计时),一般用于resize scroll, mousemove
+        
+        // 函数节流 原理 函数被高频触发时 延时n秒后才会再次执行，
+        // 防抖主要是用户触发一次时间后，延迟一段时间触发，
+        // 而节流会规定的事件内 触发一次时间
+
+        // 函数节流:是确保函数特定的时间内至多执行一次
+        // 函数防抖:是函数在特定的时间内不被再调用后执行
+
+        var debounce = function(func, delay){
+            var timer = null
+            return function() {
+                var that = this;
+                var args = arguments;
+
+                if(timer) { 
+                    clearTimeout(timer)
+                }
+                
+                timer = setTimeout(function(){
+                    func.apply(that,args)
+                },delay)
+            }
+        }
+        ipt.addEventListener("keyup",debounce(function(e){
+            console.log(e.target.value);
+        },400))
+    </script>
+</body>
+</html>

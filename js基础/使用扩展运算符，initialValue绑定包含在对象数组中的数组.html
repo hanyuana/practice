@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var friends = [{
+            name: 'Anna',
+            books: ['Bible', 'Harry Potter'],
+            age: 21
+        }, {
+            name: 'Bob',
+            books: ['War and peace', 'Romeo and Juliet'],
+            age: 26
+        }, {
+            name: 'Alice',
+            books: ['The Lord of the Rings', 'The Shining'],
+            age: 18
+        }];
+
+        // allbooks - list which will contain all friends' books +
+        // additional list contained in initialValue
+
+        // var allbooks = friends.reduce(function (prev, curr) {
+        //     return [...prev, ...curr.books];
+        // }, []);
+
+        var allbooks = friends.reduce(function(prev,cur){
+            console.log("prev",...prev,"cur",...cur.books);
+            return [...prev,...cur.books]
+        },[])
+        console.log(allbooks);
+    </script>
+</body>
+
+</html>

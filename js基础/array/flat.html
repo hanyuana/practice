@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // var arr1 = [1, 2, 3, [1, 2, 3, 4, [2, 3, 4]]];
+        // flatDeep(arr1, Infinity);
+        // function flatDeep(arr, d = 1) {
+        //     return d > 0 ? arr.reduce((acc, val) => {
+        //         console.log(acc,val)
+        //         return acc.concat(Array.isArray(val) ? flatDeep(val, d - 1) : val)
+        //     }, []) : arr.slice()
+        // }; 
+        // console.log(flatDeep(arr1, Infinity))
+
+        // var arr2 = [1, 2, 3, [1, 2, 3, 4, [2, 3, 4]]];
+        // function flat(arr, num = 1) {
+        //     return num > 0 ? arr.reduce((prev, cur) => {
+        //         console.log(prev);
+        //         console.log(cur);
+        //         return prev.concat(Array.isArray(cur) ? flat(cur, num - 1) : cur)
+        //     }, []) : arr.slice();
+        // }
+        // console.log(flat(arr2, Infinity));
+
+        // let arr3 = [];
+        // var arr2 = [1, 2, 3, [1, 2, 3, 4, [2, 3, 4]]];
+        // function flat(arr,num=1) {
+        //     return num >0 ? arr.forEach((item) => {
+        //         Array.isArray(item) ? flat(item,num-1):arr3.push(item)
+        //     }):arr.slice()
+        // }
+        // flat(arr2)
+        // console.log(arr3,2  );
+
+
+
+        var arr1 = [1, 2, 3, [1, 2, 3, 4, [2, 3, 4]]];
+
+        function flat1(arr, num = 1) {
+            const result = []; // 缓存递归结果
+            (function flat(arr, num) {
+                arr.forEach(item => {
+                    if (Array.isArray(item) && num > 0) {
+                        flat(item, num - 1)
+                    } else {
+                        result.push(item)
+                    }
+                });
+            })(arr,num)
+            return result;
+        }
+        // 开始递归
+        // 
+
+        // 返回递归结果
+
+        console.log(flat1(arr1, 2));
+    </script>
+</body>
+
+</html>
